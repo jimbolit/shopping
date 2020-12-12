@@ -3,8 +3,10 @@ class WelcomeController < ApplicationController
   end
 
   def categories
-    @categories = categories_table.to_a
-
+    @categories = Category.all
   end
 
+
+
 end
+
