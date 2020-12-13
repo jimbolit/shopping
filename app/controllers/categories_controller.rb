@@ -21,7 +21,9 @@ class CategoriesController < ApplicationController
       basket_ids = @basket.map {|x| x.values[0]}
      
     rescue NoMethodError
-    # does not fail if the current basket is empty -  not in original Sinatra code (not sure why it wasn't required)
+    # does not fail if the current basket is empty -  
+    # not in original Sinatra code 
+    # (not sure why it wasn't required)
 
       @basket_products = Product.where(id: basket_ids).to_a
     

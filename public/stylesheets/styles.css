@@ -264,7 +264,8 @@ background-color: blue;
 }
 
 .spacer {
-    margin-bottom: 100px
+  margin-top: 50px;
+  margin-bottom: 50px
 }
 
 .spacer h5{
