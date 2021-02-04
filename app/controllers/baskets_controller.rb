@@ -8,13 +8,7 @@ class BasketsController < ApplicationController
             # puts basket_ids
             @products = Product.where(id: basket_ids).to_a
            puts @products.inspect
-            @sub_total = 5
-           
-        
-            # does not fail if the current basket is empty -  
-            # not in original Sinatra code 
-            # (not sure why it wasn't required)
-
+            @sub_total = 0
 
         #   @products = Product.where(id: [1,2,3]).to_a
         #  print @products
@@ -32,7 +26,10 @@ class BasketsController < ApplicationController
          else
             render :index  
      end
-    rescue NoMethodError
+  #  rescue NoMethodError
+            # does not fail if the current basket is empty -  
+            # not in original Sinatra code 
+            # (not sure why it wasn't required)
     end
 end
 
