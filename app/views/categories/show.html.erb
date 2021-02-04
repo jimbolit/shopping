@@ -16,7 +16,7 @@
                 <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">#</span>
                 <div class="shopping-cart-total">
                     <span class="lighter-text">Total:</span>
-                    <span class="main-color-text">$<%="%.2f" % @sub_total%></span>
+                    <span class="main-color-text">$<%="%.2f" % @sub_total %></span>
                 </div>
             </div> <!--end shopping-cart-header -->
 
@@ -81,6 +81,8 @@
 
 <script>
    
+   var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+    
     function addFormattingAll (){
     var quantity = $(this).attr('data-quantity');
     if(quantity > 0){
@@ -102,7 +104,11 @@
     function sendQuantity(){
         $.ajax({
             type: "post",
-            url: "/basket",
+            dataType: "json",
+            url: "/categories/increase_quantity",
+            beforeSend: function(xhr) {
+                    xhr.setRequestHeader('X-CSRF-Token', AUTH_TOKEN)
+            },
             data: { product_id: id, order_quantity: current_quantity},
             success: function(){
                 console.log("success")
@@ -112,6 +118,7 @@
             }
         });
         console.log(current_quantity, id_quantity);
+        console.log(AUTH_TOKEN);
     }
    
     function setVariables(dataId){

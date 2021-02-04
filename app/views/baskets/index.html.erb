@@ -3,7 +3,7 @@
 	<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
-    <link rel="stylesheet" href="/styles_checkout.css">
+    <link rel="stylesheet" href="/stylesheets/styles_checkout.css">
 </head>
 
 <body>
@@ -42,12 +42,12 @@
                     </li>
 
                     <% for products in @products %>
-                    <% quantity = @basket.find{|y| y[:product_id] == products[:id]}[:order_quantity]%>
+                    <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"]%>
                     
                     <li class="row product-row d-flex flex-row">
                         <span class="quantity"><%= quantity %></span>
                         <span class="itemName"> <%=products[:name]%></span>
-                        <span class="price">$<%= "%.2f" %  (products[:price] * quantity) %></span>
+                        <span class="price">$<%= "%.2f" %  (products[:price] * quantity.to_i) %></span>
                         <span class="popbtn"><a class="arrow"></a></span>
                     </li>
                     
@@ -55,7 +55,7 @@
                     
                     <li class="row totals">
                         <span class="itemName">Total:</span>
-                        <span class="price">$<%="%.2f" %  @sub_total%> </span>
+                        <span class="price">$<%="%.2f" %  @sub_total %> </span>
                         <span class="order"> <a id="continue" class="text-center" href='/delivery-details'>Continue</a></span>
                     </li>
                 </ul>
