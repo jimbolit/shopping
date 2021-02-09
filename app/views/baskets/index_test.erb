@@ -8,15 +8,15 @@
     </div>   
 
     <h3>
-        <%= @products[0][:id] %>
+        <%= @basket_products[0][:id] %>
     </h3>
 
 
     <h2>
-    <%=  @basket.find{|y| y["product_id"] == @products[0][:id]}["order_quantity"]%>
+    <%=  @basket.find{|y| y["product_id"] == @basket_products[0][:id]}["order_quantity"]%>
     </h2>
 
-    <% for products in @products %>
+    <% for products in @basket_products %>
     
     <% quantity = @basket.find{|y| y["product_id"].to_i == products[:id]}.to_h["order_quantity"] %>
         <h1>

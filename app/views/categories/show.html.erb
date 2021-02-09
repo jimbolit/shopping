@@ -23,7 +23,7 @@
             <ul class="shopping-cart-items">
 
                 <% for products in @basket_products %>
-                <% quantity = @basket.find{|y| y[:product_id] == products[:id]}[:order_quantity]%>
+                <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"]%>
 
             <li class="clearfix">
                 <img src="../<%=products[:image]%>" alt="item1" class ="product-thumbnail" />
@@ -37,6 +37,8 @@
     </div> <!--end container -->
 </div>
     
+<!-- Regular category page begins -->
+
 <div class = "container" id="restOf">
 
     <div class="buttonSpacer order">
@@ -46,10 +48,10 @@
     <div class= "row products-row">
 
     <% for products in @products %>
-    <% if defined?(@basket.find{|y| y[:product_id] == products[:id]}[:order_quantity]) == nil %>
+    <% if @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"].is_a?(Numeric) == false %>
     <% quantity = 0 %>
     <% else %>
-    <% quantity = @basket.find{|y| y[:product_id] == products[:id]}[:order_quantity] %>
+    <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"] %>
     <% end %>
 
     <div class = "col-md-3">      
@@ -80,7 +82,6 @@
 <!-- Javascript -->
 
 <script>
-   
    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
     
     function addFormattingAll (){

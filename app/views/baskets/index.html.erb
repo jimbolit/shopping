@@ -41,7 +41,7 @@
                         <span>Price</span>
                     </li>
 
-                    <% for products in @products %>
+                    <% for products in @basket_products %>
                     <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"]%>
                     
                     <li class="row product-row d-flex flex-row">
