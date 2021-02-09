@@ -1,4 +1,4 @@
-class OrderProductController < ApplicationController
+class OrderProductsController < ApplicationController
 
     def create
         @order_product = Order_product.new(params[:order_product])

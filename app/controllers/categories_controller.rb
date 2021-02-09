@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   # This should not be in here but I can't figure out how to pass the CSRF token
-  skip_before_action :verify_authenticity_token
+ # skip_before_action :verify_authenticity_token
 
 
     def create
