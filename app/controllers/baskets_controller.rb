@@ -21,7 +21,8 @@ class BasketsController < ApplicationController
             @subtotal ||= 0
            }
       
-           
+          rescue NoMethodError
+
          if @basket == []
            render :basket_empty
          else

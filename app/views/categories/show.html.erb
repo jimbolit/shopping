@@ -20,8 +20,11 @@
                 </div>
             </div> <!--end shopping-cart-header -->
 
-            <ul class="shopping-cart-items">
 
+            <% if @basket_products.nil? %>
+           
+            <% else %>
+            <ul class="shopping-cart-items">
                 <% for products in @basket_products %>
                 <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"]%>
 
@@ -33,10 +36,14 @@
             </li>
             <% end %>
             </ul>
+            <% end %>
+
         </div> <!--end shopping-cart -->
     </div> <!--end container -->
 </div>
     
+
+
 <!-- Regular category page begins -->
 
 <div class = "container" id="restOf">
@@ -48,8 +55,13 @@
     <div class= "row products-row">
 
     <% for products in @products %>
-    <% if @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"].is_a?(Numeric) == false %>
+
+    <% if @basket.nil? %>
     <% quantity = 0 %>
+
+    <% elsif @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"].is_a?(Numeric) == false %>
+    <% quantity = 0 %>
+
     <% else %>
     <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"] %>
     <% end %>

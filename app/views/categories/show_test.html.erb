@@ -1,0 +1,14 @@
+<% for products in @products %>
+
+    <% if @basket.nil? %>
+  <h1> <%= "basket is nil" %> </h1>
+
+    <% elsif @basket.find{|y| y["product_id"] == products[:id]}.present? %>
+    <h1><%= "basket has something" %></h1>
+
+    <% else %>
+    <% quantity = @basket.find{|y| y["product_id"] == products[:id]}.to_h["order_quantity"] %>
+    <h1><%= "basket has lots of things" %></h1>
+
+    <% end %>
+    <% end %>
