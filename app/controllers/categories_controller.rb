@@ -27,10 +27,6 @@ class CategoriesController < ApplicationController
 
        @basket = session[:basket].select{|x| x["order_quantity"]>0}
        basket_ids = @basket.map {|x| x.values[0]}
-
-       puts "YOOOOOLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-       puts @basket_products != []
-
        @basket_products = Product.where(id: basket_ids).to_a
 
        puts @basket_products
