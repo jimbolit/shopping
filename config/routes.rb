@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :orders
 
+  resources :charges
+
+
   post '/categories/increase_quantity', to: 'categories#increase_quantity', as: 'increase_quantity'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

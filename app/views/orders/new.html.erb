@@ -56,6 +56,7 @@
           
           <form class="needs-validation" action="/orders" method="post" novalidate>
             <input type="hidden" name="authenticity_token" value = <%= form_authenticity_token %> >
+            <input type="hidden" name="order[user_id]" value = nil >
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
