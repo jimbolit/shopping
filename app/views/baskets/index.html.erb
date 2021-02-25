@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
     <link rel="stylesheet" href="/stylesheets/styles_checkout.css">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -56,7 +57,7 @@
                     <li class="row totals">
                         <span class="itemName">Total:</span>
                         <span class="price">$<%="%.2f" %  @sub_total %> </span>
-                        <span class="order"> <a id="continue" class="text-center" href='/orders/new'>Continue</a></span>
+                        <span class="order"> <button id="checkout-button" class="text-center" >Continue</button></span>
                     </li>
                 </ul>
             </div>
@@ -75,5 +76,41 @@
     <script src="/customjs.js"></script>
 
 
+<!-- stripe stuff -->
 
-
+    <script type="text/javascript">
+        // Create an instance of the Stripe object with your publishable API key
+        var stripe = Stripe('pk_test_51CA2ZeBxFUzJnIkKd6rPfAVQ6YiOCBokiYUx99U2T6eguu2qhPhThZ81jL42QLvXKv2QDOXlMV64KmZlAYKBekrp00dJrTfeC2');
+        var checkoutButton = document.getElementById('checkout-button');
+  
+        checkoutButton.addEventListener('click', function() {
+          // Create a new Checkout Session using the server-side endpoint you
+          // created in step 3.
+          
+          var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+          
+          fetch('/charges/create_checkout_session', {
+            headers: {
+            'X-CSRF-Token': AUTH_TOKEN
+             },
+            method: 'POST',
+          })
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+          })
+          .then(function(result) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, you should display the localized error message to your
+            // customer using `error.message`.
+            if (result.error) {
+              alert(result.error.message);
+            }
+          })
+          .catch(function(error) {
+            console.error('Error:', error);
+          });
+        });
+      </script>

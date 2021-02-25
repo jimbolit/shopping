@@ -1,26 +1,28 @@
 class ChargesController < ApplicationController
-    def new
-    end
-    
-    def create
-      # Amount in cents
-      @amount = 500
-    
-      customer = Stripe::Customer.create({
-        email: params[:stripeEmail],
-        source: params[:stripeToken],
-      })
-    
-      charge = Stripe::Charge.create({
-        customer: customer.id,
-        amount: @amount,
-        description: 'Rails Stripe customer',
-        currency: 'nzd',
-      })
-    
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_charge_path
-    end
+
+
+  def create_checkout_session
+
+    session = Stripe::Checkout::Session.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'T-shirt',
+          },
+          unit_amount: 2000,
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      # These placeholder URLs will be replaced in a following step.
+      success_url: 'https://example.com/success',
+      cancel_url: 'https://example.com/cancel',
+    })
+
+    { id: session.id }.to_json
+
+  end
 
 end

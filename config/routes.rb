@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :charges
 
+  post '/charges/create_checkout_session', to: 'charges#create_checkout_session', as: 'create_checkout_session'
 
   post '/categories/increase_quantity', to: 'categories#increase_quantity', as: 'increase_quantity'
 
