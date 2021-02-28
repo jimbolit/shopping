@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   resources :baskets
 
+  get '/orders/success', to: 'orders#success', as: 'orders_success'
+  
+  get '/orders/fail', to: 'orders#fail', as: 'orders_fail'
+
   resources :orders
 
   resources :charges
@@ -16,6 +20,9 @@ Rails.application.routes.draw do
   post '/charges/create_checkout_session', to: 'charges#create_checkout_session', as: 'create_checkout_session'
 
   post '/categories/increase_quantity', to: 'categories#increase_quantity', as: 'increase_quantity'
+
+  
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
