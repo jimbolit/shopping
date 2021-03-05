@@ -89,12 +89,11 @@ a:hover {
 }
 
 .bigcart{
-	background:url("sprite.png");
-	background-position: 0px 11px;
+	background:url("shopping-cart.png");
+	background-position: center;
 	background-repeat:no-repeat;
-	width: 155px;
 	height: 120px;
-	margin:0 0 40px 60px;
+	margin:40px 40px 40px 60px;
 }
 
 

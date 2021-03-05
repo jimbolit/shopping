@@ -9,11 +9,13 @@ Rails.application.routes.draw do
 
   resources :baskets
 
-  get '/orders/success', to: 'orders#success', as: 'orders_success'
+  get '/orders/success/:id', to: 'orders#success', as: 'orders_success'
   
   get '/orders/fail', to: 'orders#fail', as: 'orders_fail'
 
   resources :orders
+
+  post '/charges/webhook', to: 'charges#webhook', as: 'charges_webhook'
 
   resources :charges
 

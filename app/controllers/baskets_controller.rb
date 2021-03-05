@@ -1,9 +1,6 @@
 class BasketsController < ApplicationController
 
     def index
-            
-      
-      
             @basket = []
             @basket = session[:basket].select{|x| x["order_quantity"]>0}
            
@@ -23,7 +20,9 @@ class BasketsController < ApplicationController
       
           rescue NoMethodError
 
-         if @basket == []
+            puts "THHHHEEEE VALUUUUEEE ISSS #{@basket.inspect}"
+
+         if session[:basket] == []
            render :basket_empty
          else
             render :index  
