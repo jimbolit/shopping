@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_032245) do
     t.decimal "total"
     t.string "text"
     t.string "comments"
+    t.string "delivery_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"

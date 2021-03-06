@@ -44,7 +44,7 @@ pharmacy = Category.create([{
     image: "pharmacy.jpg"
     }])
     
-Product.create([{
+product = Product.create([{
     name: "Sanitarium Weetbix Wheat Biscuits", 
     amount: "1.2Kg",
     image: "weetbix12kg.jpg",
@@ -166,7 +166,7 @@ james = User.create([{
     address: "6 Kowhai Street, Grey Lynn, Aucland, 1024, New Zealand"
     }])
    
-  Order.create([{
+  order = Order.create([{
       address: james[0]["address"],
       first_name: james[0]["first_name"],
       last_name: james[0]["last_name"],
@@ -175,5 +175,18 @@ james = User.create([{
       total: 20.00,
       text: "",
       comments: "Leave at the door if I'm not there",
-      user_id: james[0]["id"]
+      user_id: james[0]["id"],
+      delivery_status: "unclaimed"
     }])  
+
+    OrderProduct.create([{
+        order_id: order[0]["id"],
+        product_id: product[0]["id"],
+        order_quantity: 2
+      }])  
+
+    Charge.create([{
+        status: "paid",
+        stripe_id: "seed_stripe_record",
+        order_id: order[0]["id"],
+      }])  

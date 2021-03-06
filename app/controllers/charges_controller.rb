@@ -59,14 +59,11 @@ class ChargesController < ApplicationController
       end
 
       def fulfill_order(checkout_session)
-        # I can't figure out how to have session variable come through
+        # I need to put this in and change status to paid
        
         puts "The session order_id issssssssssssssss"
         puts session[:order_id].inspect
-        # @order = Order.find(session["order_id"])
-        # @charge = @order.charges.new(stripe_id: checkout_session['id'], status: "paid")
-        # @charge.save!
-        # puts "THIS WOOOOOOOOOOORKEDDDD #{@charge.inspect}"
+      
 
         # puts "Fulfilling order for #{checkout_session.inspect}"
 

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   get '/orders/fail', to: 'orders#fail', as: 'orders_fail'
 
+  get '/orders/confirm', to: 'orders#confirm', as: 'orders_confirm'
+
   resources :orders
 
   post '/charges/webhook', to: 'charges#webhook', as: 'charges_webhook'

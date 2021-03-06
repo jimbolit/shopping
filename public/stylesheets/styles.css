@@ -605,6 +605,37 @@ background-color: blue;
   font-size: 0.75em
 }
 
+/* order list  starts */
+
+th.day {
+  width: 150px;
+}
+
+th.time {
+  width: 100px;
+}
+
+th.status {
+  width: 100px;
+}
+
+th.number_items {
+  width: 150px;
+}
+
+th.address {
+  width: 300px;
+}
+
+th.payment_status {
+  width: 150px;
+}
+
+th.delivery_status {
+  width: 150px;
+}
+
+
 /* footer ends */
 
 

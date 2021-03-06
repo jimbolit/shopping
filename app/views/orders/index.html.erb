@@ -1,0 +1,29 @@
+<div class= "row mt-4">
+    <div class= "col-sm-12 mx-3">
+
+
+        <table class="table">
+        <tr>
+            <th class="day">Day</th>
+            <th class="time">Time</th>
+            <th class="number_items">Number of items</th>
+            <th class="address">Address</th>
+            <th class="payment_status">Payment Status</th>
+            <th class="delivery_status">Delivery status</th>
+            </tr>
+
+        <% for order in @orders %>
+        <tr>
+            <td><%=order[:created_at].strftime("%A %d %B")%></td>
+            <td><%=order[:created_at].strftime("%I:%M %p")%></td>
+            <td><%= @number_items.select{|x| x["order_id"] == order[:id]}[0]["number_items"] %></td>
+            <td><%=order[:address]%></td>
+            <td><%=@charges.where(order_id: order[:id])[0]["status"] %></td>
+            <td><%=order[:delivery_status]%></td>
+        </tr>
+
+        <% end %>
+        </table>
+
+    </div>
+</div>
